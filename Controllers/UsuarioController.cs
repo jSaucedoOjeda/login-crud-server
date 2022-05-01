@@ -94,5 +94,31 @@ namespace login_crud_server.Controllers
 
         }
 
+        [HttpPost("login")]
+
+        public IActionResult login([FromBody] Usuario user)
+        {
+            bool resultado = false;
+            try
+            {
+
+                var usuario = new DatUsuario().login(user.username);
+                if (usuario != null)
+                {
+                    if (usuario.password == user.password)
+                    {
+                        resultado = true;
+                    }
+                }
+                return Ok(resultado);
+            }
+            catch (System.Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
     }
 }

@@ -120,6 +120,30 @@ namespace login_crud_server
             return resultado;
         }
 
+        public Usuario login(string username)
+        {
+            Usuario resultado = null;
+            try
+            {
+                var lista_parametros = new DynamicParameters();
+                lista_parametros.Add("@username", username);
+                using (var conexion = new SqlConnection("Server=tcp:proyect25.database.windows.net,1433;Initial Catalog=Crud;Persist Security Info=False;User ID=administrador;Password=Hola123.;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+                {
+                    conexion.Open();
+                    resultado = conexion.QuerySingle<Usuario>("LOGIN",lista_parametros,  commandType: System.Data.CommandType.StoredProcedure);
+                    
+
+                }
+
+            }
+            catch (System.Exception ex )
+            {
+                resultado = null;
+                throw ex;
+            }
+            return resultado ;
+        }
+
     }
 
 }
