@@ -40,7 +40,7 @@ namespace login_crud_server
 
             app.UseRouting();
             app.UseCors(
-                options => options.WithOrigins("http://localhost:4200").AllowAnyMethod()
+                options => options.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod()
             );
             app.UseAuthorization();
 
