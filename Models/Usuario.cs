@@ -18,7 +18,6 @@ namespace login_crud_server{
 
         public DateTime create_date  { get; set; }
         public DateTime update_date { get; set; }
-
     } 
 
 }

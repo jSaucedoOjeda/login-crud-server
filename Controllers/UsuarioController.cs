@@ -58,6 +58,23 @@ namespace login_crud_server.Controllers
             }
         }
 
+
+        [HttpGet("consulta/{id}")]
+        public IActionResult consulta(int id)
+        {
+
+            try
+            {
+                var resultado = new DatUsuario().consulta(id);
+                return Ok(resultado);
+            }
+            catch (System.Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         [HttpPut("actualiza")]
 
         public IActionResult actualiza(int id, [FromBody] Usuario user)
@@ -102,7 +119,7 @@ namespace login_crud_server.Controllers
             try
             {
 
-                var usuario = new DatUsuario().login(user.username);
+                var usuario = new DatUsuario().login(user.username , user.telefono);
                 if (usuario != null)
                 {
                     if (usuario.password == user.password)
@@ -115,7 +132,8 @@ namespace login_crud_server.Controllers
             catch (System.Exception ex)
             {
 
-                throw ex;
+                resultado = false;
+                return Ok(resultado);
             }
 
         }
